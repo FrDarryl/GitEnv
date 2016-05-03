@@ -1,0 +1,12 @@
+[submodule "dotfiles/.vim/bundle/vim-pathogen"]
+	path = dotfiles/.vim/bundle/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
+[submodule "dotfiles/.vim/bundle/vim-fugitive"]
+	path = dotfiles/.vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "dotfiles/.vim/bundle/vim-nerdtree"]
+	path = dotfiles/.vim/bundle/vim-nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "dotfiles/.vim/bundle/vim-syntastic"]
+	path = dotfiles/.vim/bundle/vim-syntastic
+	url = https://github.com/scrooloose/syntastic.git

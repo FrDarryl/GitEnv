@@ -2,15 +2,9 @@
 " Remove ALL autocommands to allow redefines at initial load and runtime source
 autocmd!
 
-if has("unix") " For environment at work (compiled locally)
-    let Tlist_Ctags_Cmd = "~/mytools/bin/ctags"
-elseif has("win32")
-    let Tlist_Ctags_Cmd="C:/cygwin/bin/ctags.exe"
-elseif has("win32unix") " For Cygwin
-    let Tlist_Ctags_Cmd="/usr/bin/ctags"
-endif
-
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
+call pathogen#helptags()
 
 if has("eval")    " Enable filetype settings
     filetype on
