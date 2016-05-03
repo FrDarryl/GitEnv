@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /home/${USER}
-for gitEnvDotfile in ${PWD}/GitEnv/dotfiles/.*;
+for gitEnvDotfile in ${PWD}/gitenv/dotfiles/.*;
 do
     echo "Found ${gitEnvDotfile}"
     dotfileBasename="$(basename ${gitEnvDotfile})"
