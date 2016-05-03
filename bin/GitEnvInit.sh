@@ -1,10 +1,21 @@
 #!/bin/bash
 
 cd /home/${USER}
-for gitEnvDotfile in ${PWD}/gitenv/dotfiles/.*;
+
+gitenvDir="${PWD}/gitenv"
+
+if [ -L bin ]; then
+    echo "Deleting existing symlink ${PWD}/bin"
+    rm bin
+fi
+
+echo "Creating ${PWD}/bin (symbolic link to ${gitenvDir}/bin)"
+ln -s ${gitenvDir}/bin ./
+
+for gitenvDotfile in ${gitenvDir}/dotfiles/.*;
 do
-    echo "Found ${gitEnvDotfile}"
-    dotfileBasename="$(basename ${gitEnvDotfile})"
+    echo "Found ${gitenvDotfile}"
+    dotfileBasename="$(basename ${gitenvDotfile})"
     if [ ${dotfileBasename} = "." ] || [ ${dotfileBasename} = ".." ]; then
        continue
     fi
@@ -15,6 +26,6 @@ do
         echo "..Renaming existing ${PWD}/${dotfileBasename} to ${PWD}/${dotfileBasename}.factory"
         mv ${dotfileBasename} ${dotfileBasename}.factory
     fi
-    echo "..Creating ${PWD}/${dotfileBasename} (symbolic link to ${gitEnvDotfile})"
-    ln -s ${gitEnvDotfile} ./${dotfileBasename}
+    echo "..Creating ${PWD}/${dotfileBasename} (symbolic link to ${gitenvDotfile})"
+    ln -s ${gitenvDotfile} ./${dotfileBasename}
 done
