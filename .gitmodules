@@ -10,3 +10,6 @@
 [submodule "dotfiles/.vim/bundle/vim-syntastic"]
 	path = dotfiles/.vim/bundle/vim-syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "dotfiles/.vim/bundle/vim-yats"]
+	path = dotfiles/.vim/bundle/vim-yats
+	url = https://github.com/HerringtonDarkholme/yats.vim.git
