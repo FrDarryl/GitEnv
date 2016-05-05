@@ -14,8 +14,6 @@ aptin()
     sudo apt-get -y autoremove &&
     echo -e "\n\n\e[00;31mRunning apt-get -y clean\e[00m\n\n" &&
     sudo apt-get clean;
-    echo -e "\n\n\e[00;31mRunning dpkg --get-selections redirecting to ${DROPBOX_HOME}/etc/apt/dpkg_selections.${HOSTNAME}\e[00m\n\n" &&
-    sudo dpkg --get-selections >| ${DROPBOX_HOME}/etc/apt/dpkg_selections.${HOSTNAME}
 }
 aptdp()
 {
@@ -37,8 +35,6 @@ aptrm()
     sudo apt-get -y autoremove &&
     echo -e "\n\n\e[00;31mRunning apt-get -y clean\e[00m\n\n" &&
     sudo apt-get clean;
-    echo -e "\n\n\e[00;31mRunning dpkg --get-selections redirecting to ${DROPBOX_HOME}/etc/apt/dpkg_selections.${HOSTNAME}\e[00m\n\n" &&
-    sudo dpkg --get-selections >| ${DROPBOX_HOME}/etc/apt/dpkg_selections.${HOSTNAME}
 }
 alias aptcs="apt-cache search"
 aptup()
@@ -57,8 +53,6 @@ aptup()
     sudo apt-get -y autoremove &&
     echo -e "\n\n\e[00;31mRunning apt-get -y clean\e[00m\n\n" &&
     sudo apt-get clean;
-    echo -e "\n\n\e[00;31mRunning dpkg --get-selections redirecting to ${DROPBOX_HOME}/etc/apt/dpkg_selections.${HOSTNAME}\n\n\e[00m" &&
-    sudo dpkg --get-selections >| ${DROPBOX_HOME}/etc/apt/dpkg_selections.${HOSTNAME}
 }
 alias au="echo \"${@}\" >> _urls"
 alias c="cd;clear"
