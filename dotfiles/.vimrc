@@ -47,18 +47,18 @@ set viminfo='10,\"100,:500,%,n~/.viminfo
 
 "========================================================= status bar
 set laststatus=2
-set statusline=
-set statusline+=%2*%-3.3n%0*\                " buffer number
-set statusline+=%F\                          " file name
-set statusline+=%h%1*%m%r%w%0*               " flags
-set statusline+=\[%{strlen(&ft)?&ft:'none'}, " filetype
-set statusline+=%{&encoding},                " encoding
-set statusline+=%{&fileformat}]              " file format
-set statusline+=%=                           " right align
-set statusline+=%2*0x%-8B\                   " current char
-set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
-let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
-
+"set statusline=
+"set statusline+=%2*%-3.3n%0*\                " buffer number
+"set statusline+=%F\                          " file name
+"set statusline+=%h%1*%m%r%w%0*               " flags
+"set statusline+=\[%{strlen(&ft)?&ft:'none'}, " filetype
+"set statusline+=%{&encoding},                " encoding
+"set statusline+=%{&fileformat}]              " file format
+"set statusline+=%=                           " right align
+"set statusline+=%2*0x%-8B\                   " current char
+"set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
+"let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
+let g:airline#extensions#tabline#enabled = 1
 "========================================================== colour scheme
 "colorscheme ChocolateLiquor
 "colorscheme almost-default
