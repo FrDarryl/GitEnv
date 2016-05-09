@@ -19,3 +19,6 @@
 [submodule "dotfiles/.vim/bundle/vim-conque"]
 	path = dotfiles/.vim/bundle/vim-conque
 	url = https://github.com/nicoraffo/conque.git
+[submodule "dotfiles/.vim/bundle/vim-emmet-vim"]
+	path = dotfiles/.vim/bundle/vim-emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
