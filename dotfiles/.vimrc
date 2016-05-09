@@ -58,7 +58,6 @@ set laststatus=2
 "set statusline+=%2*0x%-8B\                   " current char
 "set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
 "let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
-let g:airline_section_z += '%2*0x%-8B'
 let g:airline#extensions#tabline#enabled = 1
 "========================================================== colour scheme
 "colorscheme ChocolateLiquor
