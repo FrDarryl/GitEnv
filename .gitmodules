@@ -16,3 +16,6 @@
 [submodule "dotfiles/.vim/bundle/vim-bufexplorer"]
 	path = dotfiles/.vim/bundle/vim-bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer.git
+[submodule "dotfiles/.vim/bundle/vim-conque"]
+	path = dotfiles/.vim/bundle/vim-conque
+	url = https://github.com/nicoraffo/conque.git

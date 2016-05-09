@@ -111,29 +111,24 @@ gc() { grep -i "$@" ~/Dropbox/data/pim/*_contacts.tsv ; }
 getRSVCE() {
     get_biblegateway_text.pl -u -t RSVCE $(get_universalis_refs.pl -l m -d $1 2> /dev/null)
 }
+alias gitenv_pull="cd ~/gitenv && git pull origin master && git submodule init && git submodule update"
+alias gitenv_push="cd ~/gitenv && git add . && git commit -m '`date`' && git push origin master"
+gitenv_add_vim_package() {
+    if [ -z $2 ];
+    then
+        echo "Usage: ${FUNCNAME[0]} RepoUserID RepositoryName"
+    else
+        echo "Adding pathogen package https://github.com/${1}/${2}.git as .vim/bundle/vim-${2}"
+        cd ~/gitenv
+        git submodule add https://github.com/${1}/${2}.git dotfiles/.vim/bundle/vim-${2}
+        git add .
+        git commit -m '`date`'
+        git push origin master
+    fi
+}
 alias gf="find | xargs grep -i"
 alias gh="history | grep -i"
 alias girb="rvm use 2.0.0 && google-api oauth-2-login --client-id='427178904171.apps.googleusercontent.com' --client-secret='mUlrrm1VBFs3mE2oWgVyAbF2' --scope='https://www.googleapis.com/auth/plus.me' && google-api irb"
-alias gitin="git clone"
-gitup() {
-    if [ -z $1 ];
-    then
-        git pull
-    else
-        pwdp="${PWD}"
-        for dir_arg in $@;
-        do
-            echo "Processing directory ${dir_arg}..."
-            for file_path in `find "${dir_arg}"/ -print | sort | grep \.git$`; do
-                file_dir=`dirname "${file_path}"`
-                \cd ${file_dir}
-                echo "git pull ${file_dir}"
-                git pull
-            done
-        done
-        \cd "${pwdp}"
-    fi
-}
 gp() { ps -efa | grep -i "$@" | grep -v grep | perl -pe's/\s{2,}/ /g' | cut -d ' ' -f 2 ; }
 alias grep="/bin/grep -E --color=auto"
 alias hi=history
@@ -252,9 +247,6 @@ alias sshme="ssh frdarryl@ifordparish.org.uk"
 #alias ssr="/usr/bin/simplescreenrecorder&"
 alias sumfile="awk '{ sum += $1 } END { print sum }'"
 alias ta="tail /var/log/apache2/error.log"
-alias gitenv_pull="cd ~/gitenv && git pull origin master && git submodule init && git submodule update"
-alias gitenv_push="cd ~/gitenv && git add . && git commit -m '`date`' && git push origin master"
-alias gitenv_vim_pathogen_add="cd ~/gitenv && git submodule add https://github.com/${gitUserID}/${gitRepoName}.git dotfiles/.vim/bundle/vim-${gitRepoName}"
 alias unidecode="perl -C -MText::Unidecode -n -i -e'print unidecode( \$_)'"
 alias useradd="adduser"
 #alias vascii="${WEB_BROWSER} http://ascii.cl/htmlcodes.htm"
