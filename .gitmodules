@@ -31,3 +31,6 @@
 [submodule "dotfiles/.vim/bundle/vim-polyglot"]
 	path = dotfiles/.vim/bundle/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
+[submodule "dotfiles/.vim/bundle/javascript-libraries-syntax.vim"]
+	path = dotfiles/.vim/bundle/javascript-libraries-syntax.vim
+	url = https://github.com/othree/javascript-libraries-syntax.vim.git
