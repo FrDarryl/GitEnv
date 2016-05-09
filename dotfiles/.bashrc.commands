@@ -122,7 +122,7 @@ gitenv_add_vim_package() {
         cd ~/gitenv
         git submodule add https://github.com/${1}/${2}.git dotfiles/.vim/bundle/vim-${2}
         git add .
-        git commit -m '`date`'
+        git commit -m "`date`"
         git push origin master
     fi
 }
