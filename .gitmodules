@@ -13,3 +13,6 @@
 [submodule "dotfiles/.vim/bundle/vim-yats"]
 	path = dotfiles/.vim/bundle/vim-yats
 	url = https://github.com/HerringtonDarkholme/yats.vim.git
+[submodule "dotfiles/.vim/bundle/vim-bufexplorer"]
+	path = dotfiles/.vim/bundle/vim-bufexplorer
+	url = https://github.com/jlanzarotta/bufexplorer.git
