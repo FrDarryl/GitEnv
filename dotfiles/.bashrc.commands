@@ -118,9 +118,9 @@ gitenv_add_vim_package() {
     then
         echo "Usage: ${FUNCNAME[0]} RepoUserID RepositoryName"
     else
-        echo "Adding pathogen package https://github.com/${1}/${2}.git as .vim/bundle/vim-${2}"
+        echo "Adding pathogen package https://github.com/${1}/${2}.git as .vim/bundle/${2}"
         cd ~/gitenv
-        git submodule add https://github.com/${1}/${2}.git dotfiles/.vim/bundle/vim-${2}
+        git submodule add https://github.com/${1}/${2}.git dotfiles/.vim/bundle/${2}
         git add .
         git commit -m "`date`"
         git push origin master
