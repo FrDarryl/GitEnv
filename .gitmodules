@@ -37,3 +37,6 @@
 [submodule "dotfiles/.vim/bundle/vim-lastplace"]
 	path = dotfiles/.vim/bundle/vim-lastplace
 	url = https://github.com/dietsche/vim-lastplace.git
+[submodule "dotfiles/.vim/bundle/vim-tern_for_vim"]
+	path = dotfiles/.vim/bundle/vim-tern_for_vim
+	url = https://github.com/ternjs/tern_for_vim.git
