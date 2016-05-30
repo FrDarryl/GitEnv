@@ -49,3 +49,6 @@
 [submodule "dotfiles/.vim/bundle/tern-meteor"]
 	path = dotfiles/.vim/bundle/tern-meteor
 	url = https://github.com/slava/tern-meteor.git
+[submodule "dotfiles/.vim/bundle/emmet-vim"]
+	path = dotfiles/.vim/bundle/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
