@@ -43,6 +43,9 @@
 [submodule "dotfiles/.vim/bundle/auto_mkdir"]
 	path = dotfiles/.vim/bundle/auto_mkdir
 	url = https://github.com/DataWraith/auto_mkdir.git
+[submodule "dotfiles/.vim/bundle/tern-meteor"]
+	path = dotfiles/.vim/bundle/tern-meteor
+	url = https://github.com/slava/tern-meteor.git
 [submodule "dotfiles/.vim/bundle/vim-jdaddy"]
 	path = dotfiles/.vim/bundle/vim-jdaddy
 	url = https://github.com/tpope/vim-jdaddy.git
