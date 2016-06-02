@@ -111,12 +111,32 @@ gc() { grep -i "$@" ~/Dropbox/data/pim/*_contacts.tsv ; }
 getRSVCE() {
     get_biblegateway_text.pl -u -t RSVCE $(get_universalis_refs.pl -l m -d $1 2> /dev/null)
 }
-alias gitenv_pull="cd ~/gitenv && git pull origin master && git submodule init && git submodule update"
-alias gitenv_push="cd ~/gitenv && git add . && git commit -m '`date`' && git push origin master"
+git_pull() {
+    if [ -z $1 ];
+    then
+        echo "Usage: ${FUNCNAME[0]} RepoName"
+    else
+        cd ~/apps/${1}
+        git pull origin master
+        git submodule init
+        git submodule update
+    fi
+}
+git_push() {
+    if [ -z $1 ];
+    then
+        echo "Usage: ${FUNCNAME[0]} RepoName"
+    else
+        cd ~/apps/${1}
+        git add .
+        git commit -m "`date`"
+        git push origin master
+    fi
+}
 gitenv_add_vim_package() {
     if [ -z $2 ];
     then
-        echo "Usage: ${FUNCNAME[0]} RepoUserID RepositoryName"
+        echo "Usage: ${FUNCNAME[0]} RepoUserID RepoName"
     else
         echo "Adding pathogen package https://github.com/${1}/${2}.git as .vim/bundle/${2}"
         cd ~/gitenv
