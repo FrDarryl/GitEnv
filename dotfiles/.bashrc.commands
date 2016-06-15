@@ -111,6 +111,14 @@ gc() { grep -i "$@" ~/Dropbox/data/pim/*_contacts.tsv ; }
 getRSVCE() {
     get_biblegateway_text.pl -u -t RSVCE $(get_universalis_refs.pl -l m -d $1 2> /dev/null)
 }
+gf() {
+    find $1 | xargs grep -i $2 2>/dev/null
+}
+gfl() {
+    find $1 | xargs grep -il $2 2>/dev/null
+}
+alias gh="history | grep -i"
+alias girb="rvm use 2.0.0 && google-api oauth-2-login --client-id='427178904171.apps.googleusercontent.com' --client-secret='mUlrrm1VBFs3mE2oWgVyAbF2' --scope='https://www.googleapis.com/auth/plus.me' && google-api irb"
 git_pull() {
     if [ -z $1 ];
     then
@@ -146,9 +154,6 @@ gitenv_add_vim_package() {
         git push origin master
     fi
 }
-alias gf="find | xargs grep -i"
-alias gh="history | grep -i"
-alias girb="rvm use 2.0.0 && google-api oauth-2-login --client-id='427178904171.apps.googleusercontent.com' --client-secret='mUlrrm1VBFs3mE2oWgVyAbF2' --scope='https://www.googleapis.com/auth/plus.me' && google-api irb"
 gp() { ps -efa | grep -i "$@" | grep -v grep | perl -pe's/\s{2,}/ /g' | cut -d ' ' -f 2 ; }
 alias grep="/bin/grep -E --color=auto"
 alias hi=history

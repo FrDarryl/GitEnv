@@ -1,4 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/frdarryl/apps/rocks'
 let g:netrw_dirhist_2='/home/frdarryl/apps/rocks/.meteor'
+let g:netrw_dirhist_3='/home/frdarryl/projects/ifordparish'
+let g:netrw_dirhist_4='/home/frdarryl/projects/ifordparish/app'
+let g:netrw_dirhist_5='/home/frdarryl/projects/ifordparish/app/client'
+let g:netrw_dirhist_6='/home/frdarryl/projects/ifordparish/app/client/collections'
+let g:netrw_dirhist_7='/home/frdarryl/projects/ifordparish/app/client'
+let g:netrw_dirhist_8='/home/frdarryl/projects/ifordparish/app/client/templates'
+let g:netrw_dirhist_9='/home/frdarryl/projects/ifordparish/app/client/templates/home'

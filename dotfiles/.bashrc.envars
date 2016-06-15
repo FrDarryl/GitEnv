@@ -35,6 +35,7 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/dropbox/data"
 export XDG_CONFIG_HOME="${HOME}/.config"
 
+export NODE_PATH="/usr/local/lib/node_modules"
 #export NODE_VERSION_DEFAULT="v0.10.20"
 #export UZBL_UTIL_DIR="/usr/share/uzbl/examples/data/scripts/util"
 
