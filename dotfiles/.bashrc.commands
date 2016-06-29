@@ -27,11 +27,8 @@ aptls()
 }
 aptrm()
 {
-    echo -e "\n\n\e[00;31mRunning dpkg --configure -a\e[00m\n\n" &&
     sudo apt-get remove "$@" &&
     echo -e "\n\n\e[00;31mRunning apt-get -f install\e[00m\n\n" &&
-    sudo apt-get -f install &&
-    echo -e "\n\n\e[00;31mRunning apt-get -y autoremove\e[00m\n\n" &&
     sudo apt-get -y autoremove &&
     echo -e "\n\n\e[00;31mRunning apt-get -y clean\e[00m\n\n" &&
     sudo apt-get clean;
@@ -112,10 +109,10 @@ getRSVCE() {
     get_biblegateway_text.pl -u -t RSVCE $(get_universalis_refs.pl -l m -d $1 2> /dev/null)
 }
 gf() {
-    find $1 | xargs grep -i $2 2>/dev/null
+    find $1 | xargs grep -si $2 | grep -v cache
 }
 gfl() {
-    find $1 | xargs grep -il $2 2>/dev/null
+    find $1 | xargs grep -sil $2 | grep -v cache
 }
 alias gh="history | grep -i"
 alias girb="rvm use 2.0.0 && google-api oauth-2-login --client-id='427178904171.apps.googleusercontent.com' --client-secret='mUlrrm1VBFs3mE2oWgVyAbF2' --scope='https://www.googleapis.com/auth/plus.me' && google-api irb"
