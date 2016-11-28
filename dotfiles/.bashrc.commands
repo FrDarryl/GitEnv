@@ -121,7 +121,7 @@ git_pull() {
     then
         echo "Usage: ${FUNCNAME[0]} RepoName"
     else
-        cd ~/apps/${1}
+        cd ~/${1}
         git pull origin master
         git submodule init
         git submodule update
@@ -132,7 +132,7 @@ git_push() {
     then
         echo "Usage: ${FUNCNAME[0]} RepoName"
     else
-        cd ~/apps/${1}
+        cd ~/${1}
         git add .
         git commit -m "`date`"
         git push origin master
