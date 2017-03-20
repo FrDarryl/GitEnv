@@ -51,7 +51,7 @@ aptup()
     echo -e "\n\n\e[00;31mRunning apt-get -y clean\e[00m\n\n" &&
     sudo apt-get clean;
 }
-alias au="echo \"${@}\" >> _urls"
+au() { echo "${@}" >> _urls ; }
 alias c="cd;clear"
 alias cd="export PWDP=${PWD}; \cd"
 alias cdp="cd ${PWD_PREVIOUS:=~}"
