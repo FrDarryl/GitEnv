@@ -302,5 +302,5 @@ alias xhi="xrandr -s 1440x900"
 alias xl="xine --loop"
 alias xlo="xrandr -s 1024x768"
 alias yt="youtube-dl"
-alias yto="youtube-dl -o"
+yto () { echo "${@}" >> _urls && youtube-dl -o $@; }
 yov () { youtube-dl -o $1_$2.mp4 https://www.youtube.com/watch?v=$2; }
