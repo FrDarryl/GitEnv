@@ -2,15 +2,9 @@
 
 usage() { echo "Usage: $0 -e (optionally use Eclim) -c|g|q (curses|gtk|qt) -s (standalone editor - no client/server editing) -f (must be last) file1 file2 ... filen" 1>&2; exit 1; }
 
-if [ -n "${DISPLAY}" ]; then
-    useEclim="n"
-    useServer="n"
-    vim_bin="gvim"
-else
-    useEclim="n"
-    useServer="n"
-    vim_bin="vim"
-fi
+useEclim="n"
+useServer="n"
+vim_bin="vim"
 
 while true; do
     case $1 in
