@@ -55,3 +55,6 @@
 [submodule "dotfiles/.vim/bundle/emmet-vim"]
 	path = dotfiles/.vim/bundle/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
+[submodule "dotfiles/.vim/bundle/kotlin-vim"]
+	path = dotfiles/.vim/bundle/kotlin-vim
+	url = https://github.com/udalov/kotlin-vim.git
