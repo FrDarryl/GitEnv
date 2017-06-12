@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ -f ${HOME}/.bashrc.envars.${HOSTNAME} ] && source ${HOME}/.bashrc.envars.${HOSTNAME}
+
 # X-windows and CLI default apps and commands
 
 export EDITOR=vim
@@ -43,7 +45,6 @@ DROPBOX_HOME="${HOME}/Dropbox" && [ -d "${DROPBOX_HOME}" ] && export DROPBOX_HOM
 #ECLIPSE_HOME="${HOME}/eclipse/eclipse_luna" && [ -d "${ECLIPSE_HOME}" ] && export ECLIPSE_HOME
 #GALILEO_HOME="/usr/local/galileo" && [ -d "${GALILEO_HOME}" ] && export GALILEO_HOME
 #GOROOT="/usr/local/go" && [ -d "${GOROOT}" ] && export GOROOT
-[ -f ${HOME}/.bashrc.envars.JAVA_HOME ] && JAVA_HOME=$(cat ${HOME}/.bashrc.envars.JAVA_HOME) && [ -d "${JAVA_HOME}" ] && export JAVA_HOME
 NVM_HOME="${HOME}/.nvm" && [ -d ${NVM_HOME} ] && export NVM_HOME
 #RVM_HOME="${HOME}/.rvm" && [ -d ${RVM_HOME} ] && export RVM_HOME
 

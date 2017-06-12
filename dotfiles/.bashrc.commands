@@ -1,4 +1,8 @@
 #!/bin/bash
+
+#Source machine-specific commands first
+[ -f "${HOME}/.bashrc.commands.${HOSTNAME}" ] && source ${HOME}/.bashrc.commands.${HOSTNAME}
+
 [ -e "${HOME}/Program_Files/Adobe/Reader 11.0/Reader/AcroRd32.exe" ] && alias acroread="${HOME}/Program_Files/Adobe/Reader\ 11.0/Reader/AcroRd32.exe"
 aptin()
 {
