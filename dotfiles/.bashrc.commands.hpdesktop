@@ -1,0 +1,4 @@
+pwg()
+{
+    grep -i "$@" ${GDRIVE}/Personal/passwd.json
+}
