@@ -1,3 +1,4 @@
+alias mwin10="sudo mount -o remount,ro /dev/sda2 /media/frdarryl/win10"
 pwg()
 {
     grep -i "$@" ${GDRIVE}/Personal/passwd.json
