@@ -24,10 +24,10 @@ export PIM_DATA="${HOME}/pim/"
 
 # Google API Parish Information Management System
 
-export GOOGLE_CLIENT_ID="427178904171.apps.googleusercontent.com"
-export GOOGLE_CLIENT_SECRET="mUlrrm1VBFs3mE2oWgVyAbF2"
-export GOOGLE_CLIENT_CALLBACK_URL="http://localhost:8082/auth/callback"
-export GOOGLE_WEB_PORT="8082"
+#export GOOGLE_CLIENT_ID="427178904171.apps.googleusercontent.com"
+#export GOOGLE_CLIENT_SECRET="mUlrrm1VBFs3mE2oWgVyAbF2"
+#export GOOGLE_CLIENT_CALLBACK_URL="http://localhost:8082/auth/callback"
+#export GOOGLE_WEB_PORT="8082"
 
 export EC2_HOME=~/.ec2
 
@@ -37,27 +37,22 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/dropbox/data"
 export XDG_CONFIG_HOME="${HOME}/.config"
 
-export NODE_PATH="/usr/local/lib/node_modules"
-#export NODE_VERSION_DEFAULT="v0.10.20"
-#export UZBL_UTIL_DIR="/usr/share/uzbl/examples/data/scripts/util"
-
 DROPBOX_HOME="${HOME}/Dropbox" && [ -d "${DROPBOX_HOME}" ] && export DROPBOX_HOME
-#ECLIPSE_HOME="${HOME}/eclipse/eclipse_luna" && [ -d "${ECLIPSE_HOME}" ] && export ECLIPSE_HOME
-#GALILEO_HOME="/usr/local/galileo" && [ -d "${GALILEO_HOME}" ] && export GALILEO_HOME
-#GOROOT="/usr/local/go" && [ -d "${GOROOT}" ] && export GOROOT
+ECLIPSE_HOME="${HOME}/eclipse/eclipse_luna" && [ -d "${ECLIPSE_HOME}" ] && export ECLIPSE_HOME
+GOROOT="/usr/local/go" && [ -d "${GOROOT}" ] && export GOROOT
 NVM_HOME="${HOME}/.nvm" && [ -d ${NVM_HOME} ] && export NVM_HOME
-#RVM_HOME="${HOME}/.rvm" && [ -d ${RVM_HOME} ] && export RVM_HOME
+RVM_HOME="${HOME}/.rvm" && [ -d ${RVM_HOME} ] && export RVM_HOME
 
 export MYPATH="."
 
-[ -d "${HOME}/Apps" ]         && MYPATH="${MYPATH}:${HOME}/Apps"
+[ -d "${HOME}/Apps" ]        && MYPATH="${MYPATH}:${HOME}/Apps"
 [ -d "${HOME}/bin" ]         && MYPATH="${MYPATH}:${HOME}/bin"
 [ -d "${DROPBOX_HOME}/bin" ] && MYPATH="${MYPATH}:${DROPBOX_HOME}/bin"
 [ -d "${ECLIPSE_HOME}" ]     && MYPATH="${MYPATH}:${ECLIPSE_HOME}"
-#[ -d "${GOROOT}/bin" ]       && MYPATH="${MYPATH}:${GOROOT}/bin"
+[ -d "${GOROOT}/bin" ]       && MYPATH="${MYPATH}:${GOROOT}/bin"
 [ -d "${JAVA_HOME}/bin" ]    && MYPATH="${MYPATH}:${JAVA_HOME}/bin"
 [ -d "${NVM_HOME}" ]         && MYPATH="${MYPATH}:${NVM_HOME}" # Add NVM to PATH for scripting
-#[ -d "${RVM_HOME}/bin" ]     && MYPATH="${MYPATH}:${RVM_HOME}/bin" # Add RVM to PATH for scripting
+[ -d "${RVM_HOME}/bin" ]     && MYPATH="${MYPATH}:${RVM_HOME}/bin" # Add RVM to PATH for scripting
 
 #cygwin envars
 WINC_HOME="/cygdrive/c"
@@ -65,7 +60,7 @@ if [ -d "${WINC_HOME}" ];
 then
     export WINC_HOME
     [ -d "${WINC_HOME}/apps" ]                                    && MYPATH="${MYPATH}:${WINC_HOME}/apps"
-#    [ -d "${WINC_HOME}/Go" ]                                      && export GOROOT="${WINC_HOME}/Go" && MYPATH="${GOROOT}/bin"
+    [ -d "${WINC_HOME}/Go" ]                                      && export GOROOT="${WINC_HOME}/Go" && MYPATH="${GOROOT}/bin"
     [ -d "${WINC_HOME}/ProgramData/KDE/bin" ]                     && MYPATH="${MYPATH}:${WINC_HOME}/ProgramData/KDE/bin"
     [ -d "${WINC_HOME}/Program Files/Adobe/Reader 10.0/Reader" ]  && MYPATH="${MYPATH}:${WINC_HOME}/Program Files/Adobe/Reader 10.0/Reader"
     [ -d "${WINC_HOME}/Program Files/LibreOffice 4/program" ]     && MYPATH="${MYPATH}:${WINC_HOME}/Program Files/LibreOffice 4/program"
@@ -74,7 +69,7 @@ then
 fi
 
 # Add nightly KDE builds if you dare
-#[ -d /opt/project-neon/bin ] && MYPATH=${MYPATH:-.}:/opt/project-neon/bin
+[ -d /opt/project-neon/bin ] && MYPATH=${MYPATH:-.}:/opt/project-neon/bin
 
 export SYSPATH="${SYSPATH:-$PATH}"
 export PATH="${MYPATH}:${SYSPATH}"
@@ -82,4 +77,4 @@ export PATH="${MYPATH}:${SYSPATH}"
 export PARINIT="rTbgqR B=.,?_A_a Q=_s>| w72"
 
 [ -s "${NVM_HOME}/nvm" ] && source "${NVM_HOME}/nvm"
-#[ -s "${RVM_HOME}/scripts/rvm" ] && source "${RVM_HOME}/scripts/rvm" # Load RVM into a shell session *as a function*
+[ -s "${RVM_HOME}/scripts/rvm" ] && source "${RVM_HOME}/scripts/rvm" # Load RVM into a shell session *as a function*
