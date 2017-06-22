@@ -58,3 +58,6 @@
 [submodule "dotfiles/.vim/bundle/kotlin-vim"]
 	path = dotfiles/.vim/bundle/kotlin-vim
 	url = https://github.com/udalov/kotlin-vim.git
+[submodule "dotfiles/.vim/bundle/vim-dirdiff"]
+	path = dotfiles/.vim/bundle/vim-dirdiff
+	url = https://github.com/will133/vim-dirdiff.git
