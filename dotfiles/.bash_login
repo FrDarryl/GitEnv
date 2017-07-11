@@ -7,12 +7,4 @@ HISTFILESIZE=10000
 [ -r ~/.Xdefaults ] && [ -e /usr/bin/xrdb ] && xrdb -load ~/.Xdefaults
 [ -r ~/.bashrc ] && source ~/.bashrc
 
-#[ -z `pidof kmix` ] && kmix &
-#[ -z `pidof ${FILE_EDITOR}` ] && ${FILE_EDITOR} &
-#[ -z `pidof ${FILE_MANAGER}` ] && ${FILE_MANAGER} &
-#[ -z `pidof ${OFFICE_SUITE}` ] && ${OFFICE_SUITE} &
-#[ -z `pidof ${TERMINAL_EMULATOR}` ] && ${TERMINAL_EMULATOR} &
-#[ -z `pidof ${WEB_BROWSER}` ] && ${WEB_BROWSER} &
-
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
