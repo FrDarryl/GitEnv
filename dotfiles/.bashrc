@@ -26,3 +26,4 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 #export SDKMAN_DIR="/home/frdarryl/.sdkman"
 #[[ -s "/home/frdarryl/.sdkman/bin/sdkman-init.sh" ]] && source "/home/frdarryl/.sdkman/bin/sdkman-init.sh"
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
