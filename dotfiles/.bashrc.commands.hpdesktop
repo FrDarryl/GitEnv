@@ -8,5 +8,5 @@ mgd()
 alias mwin10="sudo mount -o ro /dev/sda2 /media/frdarryl/win10"
 pwg()
 {
-    grep -i "$@" ${GDRIVE}/revdjordan@gmail.com/Personal/passwd.json
+    grep -i "$@" ${GDRIVE}/revdjordan/Personal/passwd.json
 }
