@@ -3,10 +3,10 @@
 mgd()
 {
     read -p "Google account ID: " accountId
-    [[ -n ${accountId} ]] && google-drive-ocamlfuse -label ${accountId} /home/frdarryl/gdrive/${accountId}
+    [[ -n ${accountId} ]] && google-drive-ocamlfuse -label ${accountId} ${HOME}/gdrive/${accountId}
 }
 alias mwin10="sudo mount -o ro /dev/sda2 /media/frdarryl/win10"
 pwg()
 {
-    grep -i "$@" ${GDRIVE}/revdjordan/Personal/passwd.json
+    grep -i "$@" ${HOME}/gdrive/revdjordan/Personal/passwd.json
 }
