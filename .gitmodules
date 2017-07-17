@@ -61,3 +61,6 @@
 [submodule "dotfiles/.vim/bundle/vim-dirdiff"]
 	path = dotfiles/.vim/bundle/vim-dirdiff
 	url = https://github.com/will133/vim-dirdiff.git
+[submodule "dotfiles/.vim/bundle/vim-swap"]
+	path = dotfiles/.vim/bundle/vim-swap
+	url = https://github.com/kurkale6ka/vim-swap.git
