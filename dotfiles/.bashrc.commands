@@ -70,9 +70,7 @@ debin()
     echo -e "\n\n\e[00;31mRunning dpkg --configure -a\e\e[00m\n\n" &&
     sudo dpkg --configure -a &&
     echo -e "\n\n\e[00;31mRunning apt-get -y update\e\e[00m\n\n" &&
-    sudo dpkg -i "$@" &&
-    echo -e "\n\n\e[00;31mRunning dpkg --get-selections redirecting to ${DROPBOX_HOME}/etc/apt/dpkg_selections.${HOSTNAME}\e[00m\n\n" &&
-    sudo dpkg --get-selections >| ${DROPBOX_HOME}/etc/apt/dpkg_selections.${HOSTNAME}
+    sudo dpkg -i "$@";
 }
 debls()
 {
@@ -81,7 +79,7 @@ debls()
 detox() {
     for file_name in "${@}";
     do
-        new_file_name="$(echo "${file_name}" | sed 's/ /_/g' | sed 's/[^0-9a-zA-Z_.]//g' | tr [A-Z] [a-z])";
+        new_file_name="$(echo "${file_name}" | sed 's/ /_/g' | sed 's/[^0-9a-zA-Z-_.]//g')";
         [ "${new_file_name}" != "${file_name}" ] && mv "${file_name}" "${new_file_name}"
     done
 }
