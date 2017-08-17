@@ -53,6 +53,7 @@ export MYPATH="."
 [ -d "${JAVA_HOME}/bin" ]    && MYPATH="${MYPATH}:${JAVA_HOME}/bin"
 [ -d "${NVM_HOME}" ]         && MYPATH="${MYPATH}:${NVM_HOME}" # Add NVM to PATH for scripting
 [ -d "${RVM_HOME}/bin" ]     && MYPATH="${MYPATH}:${RVM_HOME}/bin" # Add RVM to PATH for scripting
+[ -d "${HOME}/.rakudobrew/bin" ] && MYPATH="${MYPATH}:${HOME}/.rakudobrew/bin"
 
 #cygwin envars
 WINC_HOME="/cygdrive/c"
