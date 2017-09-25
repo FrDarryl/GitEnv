@@ -28,6 +28,7 @@ set cursorline cursorcolumn
 set expandtab
 set ignorecase   " Search terms not case-sensitive by default
 set ff=unix
+set hlsearch
 set nocompatible              " be iMproved, required
 set nowrap
 set number
@@ -59,6 +60,7 @@ set laststatus=2
 "set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
 "let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_section_b = '0x%B'
 "========================================================== colour scheme
 "colorscheme ChocolateLiquor
 "colorscheme almost-default
@@ -195,6 +197,9 @@ if has("folding") " Enable folds
 endif
 
 set shell=bash\ --login
+
+source ~/.vim/osc52.vim
+vmap <C-c> y:call SendViaOSC52(getreg('"'))<cr>
 
 " Must be at the end
 syntax on

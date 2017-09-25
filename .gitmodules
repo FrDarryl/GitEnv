@@ -64,3 +64,6 @@
 [submodule "dotfiles/.vim/bundle/vim-swap"]
 	path = dotfiles/.vim/bundle/vim-swap
 	url = https://github.com/kurkale6ka/vim-swap.git
+[submodule "dotfiles/.vim/bundle/vim-perl"]
+	path = dotfiles/.vim/bundle/vim-perl
+	url = https://github.com/vim-perl/vim-perl.git
