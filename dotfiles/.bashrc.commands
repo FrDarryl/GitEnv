@@ -57,8 +57,6 @@ aptup()
 }
 au() { echo "${@}" >> _urls ; }
 alias c="cd;clear"
-alias cd="export PWDP=${PWD}; \cd"
-alias cdp="cd ${PWD_PREVIOUS:=~}"
 alias cg="/usr/bin/google contacts list --fields=name,email,phone" # http://code.google.com/p/googlecl/wiki/ExampleScripts#Contacts
 alias cpanm="sudo cpanm --verbose" # Depends: sudo apt-get install build-essential
 alias dcsnerdtree="display ${DROPBOX_HOME}/images/cheatsheets/NERDTreeCheatsheet.jpg &"

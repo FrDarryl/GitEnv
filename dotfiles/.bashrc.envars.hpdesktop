@@ -1,2 +1,6 @@
 export GDRIVE="${HOME}/gdrive"
 export JAVA_HOME="/opt/jdk1.8.0_131"
+
+# When running python in a virtualenv, do not host my prompt!
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+source ${HOME}/stmiford/bin/activate
