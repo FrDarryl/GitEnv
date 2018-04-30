@@ -48,17 +48,17 @@ set viminfo='10,\"100,:500,%,n~/.viminfo
 
 "========================================================= status bar
 set laststatus=2
-"set statusline=
-"set statusline+=%2*%-3.3n%0*\                " buffer number
-"set statusline+=%F\                          " file name
-"set statusline+=%h%1*%m%r%w%0*               " flags
-"set statusline+=\[%{strlen(&ft)?&ft:'none'}, " filetype
-"set statusline+=%{&encoding},                " encoding
-"set statusline+=%{&fileformat}]              " file format
-"set statusline+=%=                           " right align
-"set statusline+=%2*0x%-8B\                   " current char
-"set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
-"let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
+set statusline=
+set statusline+=%2*%-3.3n%0*\                " buffer number
+set statusline+=%F\                          " file name
+set statusline+=%h%1*%m%r%w%0*               " flags
+set statusline+=\[%{strlen(&ft)?&ft:'none'}, " filetype
+set statusline+=%{&encoding},                " encoding
+set statusline+=%{&fileformat}]              " file format
+set statusline+=%=                           " right align
+set statusline+=%2*0x%-8B\                   " current char
+set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
+let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_b = '0x%B'
 "========================================================== colour scheme
@@ -142,12 +142,15 @@ cmap w!! w !sudo tee % >/dev/null
 
 nmap <C-T> <ESC>:tabnew 
 
-nmap <silent> <A-Down>  :bnext!<CR>      " Buffer navigation (within current window)
-nmap <silent> <A-Left>  :tabprevious!<CR> " Also: gT
-nmap <silent> <A-Right> :tabnext!<CR>     " Also: gt
-nmap <silent> <A-Up>    :bprevious!<CR>   " Buffer navigation (within current window)
+nmap <silent> <A-Right> :bnext!<CR>      " Buffer navigation (within current window)
+nmap <silent> <A-Left>  :bprevious!<CR>   " Buffer navigation (within current window)
+nmap <silent> <A-Down>  :wincmd j<CR>
+nmap <silent> <A-Up>    :wincmd k<CR>
+"nmap <silent> <A-Left>  :tabprevious!<CR> " Also: gT
+"nmap <silent> <A-Right> :tabnext!<CR>     " Also: gt
 nmap <silent> <F2>  :join<CR>0
 nmap <silent> <F11> :cal VimCommanderToggle()<CR>
+
 
 ":for i in range(1,125) | put ='=TRANSPOSE(PostTownsReference!'.i.':'.i.')' | endfor
 ":%perldo s/([\w-]+?)_([\w-]*?)_([\w-]+?)_(churches|workplaces|religiousCommunities|cemeteries)/\U$1\E_$2_$3_$4/g)
@@ -200,6 +203,8 @@ set shell=bash\ --login
 
 source ~/.vim/osc52.vim
 vmap <C-c> y:call SendViaOSC52(getreg('"'))<cr>
+
+let @t = '/^All Saintsotest	hello	again^'
 
 " Must be at the end
 syntax on

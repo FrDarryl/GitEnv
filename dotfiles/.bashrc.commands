@@ -85,6 +85,59 @@ alias di="/usr/bin/display"
 alias dl="wget"
 alias docx2txt=docx2txt.pl
 alias du="du -h"
+eventsFromUnical() {
+    curl http://www.universalis.com/europe.england.${1}/${2}0101/vcalendar.ics | tac | tac \
+        | grep "^(UID|SUMMARY)" \
+        | perl -pe 's/^UID:.+\.(.).+\/(\d+).*\r\n/$2\t$1\t/' \
+        | perl -pe 's/^(\d{4})(\d{2})(\d{2})/$1-$2-$3/' \
+        | perl -pe 's/SUMMARY://' \
+        | perl -pe 's/,\\n /|/g' \
+        | perl -pe 's/\t(\d+).. Sunday.+?(Advent|Christmastide|Christmas|Epiphany|Lent|Eastertide|Easter|Ordinary Time|Trinity)/\tSunday in $2 $1/' \
+        | perl -pe 's/\t([A-Z][a-z]+day) of the (\d+)[a-z].+ week of ([A-Z][A-Za-z ]+)/\t$1 of $3 $2/' \
+        | perl -pe 's/\t([A-Z][a-z]+day) of week (\d+).in ([A-Z][A-Za-z ]+)/\t$1 of $3 $2/' \
+        | perl -pe 's/\t([A-Z][a-z]+day?) after the (\d+).+? after ([A-Z][A-Za-z ]+)/\t$1 of $3 $2/' \
+        | perl -pe 's/\t([A-Z][a-z]+day?) after the ([A-Za-z-]+?) Sunday after ([A-Z][A-Za-z ]+)/\t$1 of $3 $2/' \
+        | perl -pe 's/\t([A-Za-z-]+?) Sunday after (Epiphany|Trinity)/\t$2 $1/' \
+        | perl -pe 's/(Epiphany|Trinity) First/$1 I/' \
+        | perl -pe 's/(Epiphany|Trinity) Second/$1 II/' \
+        | perl -pe 's/(Epiphany|Trinity) Third/$1 III/' \
+        | perl -pe 's/(Epiphany|Trinity) Fourth/$1 IV/' \
+        | perl -pe 's/(Epiphany|Trinity) Fifth/$1 V/' \
+        | perl -pe 's/(Epiphany|Trinity) Sixth/$1 VI/' \
+        | perl -pe 's/(Epiphany|Trinity) Seventh/$1 VII/' \
+        | perl -pe 's/(Epiphany|Trinity) Eighth/$1 VIII/' \
+        | perl -pe 's/(Epiphany|Trinity) Ninth/$1 IX/' \
+        | perl -pe 's/(Epiphany|Trinity) Tenth/$1 X/' \
+        | perl -pe 's/(Epiphany|Trinity) Eleventh/$1 XI/' \
+        | perl -pe 's/(Epiphany|Trinity) Twelfth/$1 XII/' \
+        | perl -pe 's/(Epiphany|Trinity) Thirteenth/$1 XIII/' \
+        | perl -pe 's/(Epiphany|Trinity) Fourteenth/$1 XIV/' \
+        | perl -pe 's/(Epiphany|Trinity) Fifteenth/$1 XV/' \
+        | perl -pe 's/(Epiphany|Trinity) Sixtenth/$1 XVI/' \
+        | perl -pe 's/(Epiphany|Trinity) Seventeenth/$1 XVII/' \
+        | perl -pe 's/(Epiphany|Trinity) Eighteenth/$1 XVIII/' \
+        | perl -pe 's/(Epiphany|Trinity) Nineteenth/$1 XIX/' \
+        | perl -pe 's/(Epiphany|Trinity) Twentieth/$1 XX/' \
+        | perl -pe 's/(Epiphany|Trinity) Twenty-First/$1 XXI/' \
+        | perl -pe 's/(Epiphany|Trinity) Twenty-Second/$1 XXII/' \
+        | perl -pe 's/(Epiphany|Trinity) Twenty-Third/$1 XXIII/' \
+        | perl -pe 's/(Epiphany|Trinity) Twenty-Fourth/$1 XXIV/' \
+        | perl -pe 's/(Epiphany|Trinity) Twenty-Fifth/$1 XXV/' \
+        | perl -pe 's/(Epiphany|Trinity) Twenty-Sixth/$1 XXVI/' \
+        | perl -pe 's/(Epiphany|Trinity) Twenty-Seventh/$1 XXVII/' \
+        | perl -pe 's/(Epiphany|Trinity) Twenty-Eighth/$1 XXVIII/' \
+        | perl -pe 's/(Epiphany|Trinity) Twenty-Ninth/$1 XXIX/' \
+        | perl -pe 's/(Epiphany|Trinity) Thirtieth/$1 XXX/' \
+        | perl -pe 's/(Epiphany|Trinity) Thirty-First/$1 XXXI/' \
+        | perl -pe 's/(Epiphany|Trinity) Thirty-Second/$1 XXXII/' \
+        | perl -pe 's/(Epiphany|Trinity) Thirty-Third/$1 XXXIII/' \
+        | perl -pe 's/(Epiphany|Trinity) Thirty-Fourth/$1 XXXIV/' \
+        | perl -pe 's/Blessed Virgin Mary/BVM/g' \
+        | perl -pe 's/Saint /St /g' \
+        | perl -pe 's/Saints /Ss /g' \
+        | perl -pe 's/\(commemoration of (.+?)\)/$1/g' \
+        | perl -pe 's/\|or /|/g'
+}
 alias evcf="e ${DROPBOX_HOME}/data/pim/contacts.vcf"
 alias e="vim.sh"
 alias ecss="${DROPBOX_HOME}/apps/java/juststyle.jar"
