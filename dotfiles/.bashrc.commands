@@ -144,6 +144,14 @@ alias ecss="${DROPBOX_HOME}/apps/java/juststyle.jar"
 alias et="e /tmp/temp"
 alias fa="find . -printf '%CY-%Cm-%Cd_%CH:%CM %p %l\n'"
 alias ff="firefox-trunk&"
+ffmpeg-extract () {
+    if [ $# -ne 4 ];
+    then
+        echo "Usage: $0 InputPath StartPosition Duration OutputPath"
+    else
+        ffmpeg -ss $2 -i $1 -t $3 -vcodec copy -acodec copy $4
+    fi
+}
 finddup() {
     cksum ./* | awk ' {
                           if ( $2 in arr ) {
@@ -225,6 +233,7 @@ alias less="less -r"
 alias ll="/bin/ls --color=auto -Ahlp --time-style=long-iso"
 alias lld="/bin/ls --color=auto -Ahlp --time-style=long-iso | grep ^d"
 alias lll="/bin/ls --color=auto -Ahlp --time-style=long-iso | grep ^l"
+alias lls="/bin/ls --color=auto -Ahlp --time-style=long-iso --sort=size"
 alias llt="/bin/ls --color=auto -Ahlp --time-style=long-iso | head"
 alias ls="/bin/ls --color=auto -Ap"
 alias lsi="/bin/ls --color=auto -1Aip"
