@@ -149,7 +149,18 @@ ffmpeg-extract () {
     then
         echo "Usage: $0 InputPath StartPosition Duration OutputPath"
     else
-        ffmpeg -ss $2 -i $1 -t $3 -vcodec copy -acodec copy $4
+        ffmpeg -ss "${2}" -i $1 -t $3 -vcodec copy -acodec copy "${4}"
+    fi
+}
+ffmpeg-merge () {
+    if [ $# -lt 3 ];
+    then
+        echo "Usage: $0 OutputPath file1 ... filen"
+    else
+        of="${1}"
+        echo "Output: $of"
+        shift
+        ffmpeg -f concat -safe 0 -i <(for f in "${@}"; do echo "file '$PWD/$f'"; done) -c copy "$of"
     fi
 }
 finddup() {
