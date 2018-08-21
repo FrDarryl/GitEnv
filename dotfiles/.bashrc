@@ -20,3 +20,5 @@ if [[ $- == *i* ]]; then
 #   To see fortunes when this runs, install fortune packages and do a 'touch ~/.fortune'
     [ -f ~/.fortune ] && [ -f /usr/games/fortune ] && /usr/games/fortune -s
 fi
+
+[ -f /opt/perl5/etc/bashrc ] && export PERLBREW_ROOT=/opt/perl5 && source /opt/perl5/etc/bashrc
