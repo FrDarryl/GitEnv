@@ -283,6 +283,7 @@ nvmin() {
 opr() { ${PDF_READER_APP} "${@}"; }
 oss() { ${SPREADSHEET_APP} "${@}"; }
 owp() { ${WORD_PROCESSOR_APP} "${@}"; }
+alias pkup="pkcon refresh && pkcon update"
 alias plasma_restart="kbuildsycoca4 && kquitapp plasma-desktop && kstart plasma-desktop"
 alias pp="tr -cd '\12\40-\176' | a2ps --columns=1 --font='12' --portrait"
 alias pslpr="perl -i.bak -pe 's/[^[:ascii:]]//g' | textfmt -s A4 -p 12 | lpr -P HP_LaserJet_1100"
