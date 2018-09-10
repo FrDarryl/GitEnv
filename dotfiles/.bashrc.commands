@@ -10,7 +10,7 @@ aptin()
     sudo apt-get -f install &&
     echo -e "\n\n\e[00;31mRunning dpkg --configure -a\e\e[00m\n\n" &&
     sudo dpkg --configure -a &&
-    echo -e "\n\n\e[00;31mRunning apt-get -y update\e\e[00m\n\n" &&
+    echo -e "\n\n\e[00;31mRunning apt-get -y --allow-downgrades update\e\e[00m\n\n" &&
     sudo apt-get -y update &&
     echo -e "\n\n\e[00;31mRunning apt-get install\e[00m\n\n" &&
     sudo apt-get install "$@" &&
