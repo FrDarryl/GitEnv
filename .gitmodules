@@ -73,3 +73,6 @@
 [submodule "dotfiles/.vim/bundle/vim-repeat"]
 	path = dotfiles/.vim/bundle/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule "dotfiles/.vim/bundle/vim-easyclip"]
+	path = dotfiles/.vim/bundle/vim-easyclip
+	url = https://github.com/svermeulen/vim-easyclip.git
