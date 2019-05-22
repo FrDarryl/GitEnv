@@ -4,6 +4,9 @@
 [ -f "${HOME}/.bashrc.commands.${HOSTNAME}" ] && source ${HOME}/.bashrc.commands.${HOSTNAME}
 
 [ -e "${HOME}/Program_Files/Adobe/Reader 11.0/Reader/AcroRd32.exe" ] && alias acroread="${HOME}/Program_Files/Adobe/Reader\ 11.0/Reader/AcroRd32.exe"
+
+
+# functions
 aptin()
 {
     echo -e "\n\n\e[00;31mRunning apt-get -f install\e[00m\n\n" &&
@@ -37,7 +40,6 @@ aptrm()
     echo -e "\n\n\e[00;31mRunning apt-get -y clean\e[00m\n\n" &&
     sudo apt-get clean;
 }
-alias aptcs="apt-cache search"
 aptup()
 {
     echo -e "\n\n\e[00;31mRunning apt-get -f install\e[00m\n\n" &&
@@ -56,11 +58,6 @@ aptup()
     sudo apt-get clean;
 }
 au() { echo "${@}" >> _urls ; }
-alias c="cd;clear"
-alias cg="/usr/bin/google contacts list --fields=name,email,phone" # http://code.google.com/p/googlecl/wiki/ExampleScripts#Contacts
-alias cpanm="sudo cpanm --verbose" # Depends: sudo apt-get install build-essential
-alias dcsnerdtree="display ${DROPBOX_HOME}/images/cheatsheets/NERDTreeCheatsheet.jpg &"
-alias dcsyakuake="display ${DROPBOX_HOME}/images/cheatsheets/YakuakeCheatsheet.jpg &"
 debin()
 {
     echo -e "\n\n\e[00;31mRunning apt-get -f install\e[00m\n\n" &&
@@ -81,10 +78,6 @@ detox() {
         [ "${new_file_name}" != "${file_name}" ] && mv "${file_name}" "${new_file_name}"
     done
 }
-alias di="/usr/bin/display"
-alias dl="wget"
-alias docx2txt=docx2txt.pl
-alias du="du -h"
 eventsFromUnical() {
     curl http://www.universalis.com/europe.england.${1}/${2}0101/vcalendar.ics | tac | tac \
         | grep "^(UID|SUMMARY)" \
@@ -138,12 +131,6 @@ eventsFromUnical() {
         | perl -pe 's/\(commemoration of (.+?)\)/$1/g' \
         | perl -pe 's/\|or /|/g'
 }
-alias evcf="e ${DROPBOX_HOME}/data/pim/contacts.vcf"
-alias e="vim.sh"
-alias ecss="${DROPBOX_HOME}/apps/java/juststyle.jar"
-alias et="e /tmp/temp"
-alias fa="find . -printf '%CY-%Cm-%Cd_%CH:%CM %p %l\n'"
-alias ff="firefox-trunk&"
 ffmpeg-extract () {
     if [ $# -ne 4 ];
     then
@@ -172,10 +159,6 @@ finddup() {
                           }
                       }'
 }
-alias fln="find $PWD -type l -exec ls -o {} \;"
-alias flnd="find ~ -type l -exec ls -o {} \; | grep dropbox >| ${DROPBOX_HOME}/symlinks.dropbox.${USER}@${HOSTNAME}.txt"
-alias fp="firefox-trunk --private&"
-alias gemup="gem update && gem cleanup"
 gc() { grep -i "$@" ~/Dropbox/data/pim/*_contacts.tsv ; }
 getRSVCE() {
     get_biblegateway_text.pl -u -t RSVCE $(get_universalis_refs.pl -l m -d $1 2> /dev/null)
@@ -186,8 +169,6 @@ gf() {
 gfl() {
     find $1 | xargs grep -sil $2 | grep -v cache
 }
-alias gh="history | grep -i"
-alias girb="rvm use 2.0.0 && google-api oauth-2-login --client-id='427178904171.apps.googleusercontent.com' --client-secret='mUlrrm1VBFs3mE2oWgVyAbF2' --scope='https://www.googleapis.com/auth/plus.me' && google-api irb"
 git_pull() {
     if [ -z $1 ];
     then
@@ -224,10 +205,6 @@ gitenv_add_vim_package() {
     fi
 }
 gp() { ps -efa | grep -i "$@" | grep -v grep | perl -pe's/\s{2,}/ /g' | cut -d ' ' -f 2 ; }
-alias grep="/bin/grep -E --color=auto"
-alias hi=history
-alias k9="kill -9"
-alias kc="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
 kn() {
     for pid in `np`;
     do
@@ -239,26 +216,10 @@ ks() {
     kquitapp "$@" > /dev/null 2>&1
     kstart "$@" > /dev/null 2>&1
 }
-alias ld="ls | grep \/"
-alias less="less -r"
-alias ll="/bin/ls --color=auto -Ahlp --time-style=long-iso"
-alias lld="/bin/ls --color=auto -Ahlp --time-style=long-iso | grep ^d"
-alias lll="/bin/ls --color=auto -Ahlp --time-style=long-iso | grep ^l"
-alias lls="/bin/ls --color=auto -Ahlp --time-style=long-iso --sort=size"
-alias llt="/bin/ls --color=auto -Ahlp --time-style=long-iso | head"
-alias ls="/bin/ls --color=auto -Ap"
-alias lsi="/bin/ls --color=auto -1Aip"
-alias lt="/bin/ls --color=auto -Ahlpt --time-style=long-iso | head -20"
 lu() { sdcv $1 | less ; }
-alias lynx="/usr/bin/lynx -accept_all_cookies"
 md() { pandoc -s -f markdown -t man $1 | man -l - ; }
-alias more="less -r"
 mp() { mplayer -loop 0 "$@" > /dev/null 2>&1 ; }
-alias mv="mv -i"
 mvi() { find . -inum $1 -exec mv -i {} $2 \; ; }
-alias myip="w3m -dump http://echoip.com/"
-alias nc="nesh -c"
-alias npmin="sudo npm -g install"
 npmup() {
     set -e
     set -x
@@ -268,7 +229,6 @@ npmup() {
         sudo npm -g install "$package"
     done
 }
-alias ns="netstat -tulpn"
 nvmin() {
     if [ -z "${NODE_VERSION_DEFAULT}" ]; then
         echo "envar NODE_VERSION_DEFAULT not set"
@@ -283,11 +243,6 @@ nvmin() {
 opr() { ${PDF_READER_APP} "${@}"; }
 oss() { ${SPREADSHEET_APP} "${@}"; }
 owp() { ${WORD_PROCESSOR_APP} "${@}"; }
-alias pkup="pkcon refresh && pkcon update"
-alias plasma_restart="kbuildsycoca4 && kquitapp plasma-desktop && kstart plasma-desktop"
-alias pp="tr -cd '\12\40-\176' | a2ps --columns=1 --font='12' --portrait"
-alias pslpr="perl -i.bak -pe 's/[^[:ascii:]]//g' | textfmt -s A4 -p 12 | lpr -P HP_LaserJet_1100"
-alias pwget="pass"
 pwjson() {
     echo "{ \"tld-passwords\": {";
     for tld in `ls -1 ${DROPBOX_HOME}/data/.password-store/*.gpg | perl -pe 's/^.+\/(.+)\.gpg/$1/'`;
@@ -297,7 +252,6 @@ pwjson() {
     echo "    }";
     echo "}";
 }
-alias pwset="pass generate -n"
 rename() {
     for file_name in *;
     do
@@ -305,10 +259,7 @@ rename() {
         [ "${new_file_name}" != "${file_name}" ] && mv -i "${file_name}" "${new_file_name}"
     done
 }
-alias rm="rm -i"
 rmi() { find . -maxdepth 1 -inum $1 -exec rm -i {} \; ; }
-alias rms="/usr/bin/shred -uvz"
-alias sa="sudo apt-get"
 sbl() { source ~/.bash_login; }
 sblv() { set -o verbose; source ~/.bash_login; set +o verbose; }
 setPrompt() {
@@ -335,8 +286,74 @@ setPrompt() {
 		fi
 	fi
 }
-#alias sftpsony="sftp -v -p 2222 sftp://root@192.168.0.7"
 sos() { /usr/bin/nm -D $@ | cut -d' ' -f3 ; }
+vlcr() {
+    vlc $1 --start-time $2 --stop-time $3 --repeat
+}
+#vp() { tabbed=$(tabbed -d); vimprobable2 -e $tabbed "$@" & }
+wv() {
+	lsb_release -a
+	uname -a
+	dpkg-query -W -f '${status} ${package} ${version}\n' | sed -n 's/^install ok installed //p' | grep -i $1
+}
+yto () { echo "${@}" >> _urls && youtube-dl -o $@; }
+yov () { youtube-dl -o $1_$2.mp4 https://www.youtube.com/watch?v=$2; }
+
+# aliases
+alias c="cd;clear"
+alias cg="/usr/bin/google contacts list --fields=name,email,phone" # http://code.google.com/p/googlecl/wiki/ExampleScripts#Contacts
+alias cpanm="sudo cpanm --verbose" # Depends: sudo apt-get install build-essential
+alias dcsnerdtree="display ${DROPBOX_HOME}/images/cheatsheets/NERDTreeCheatsheet.jpg &"
+alias dcsyakuake="display ${DROPBOX_HOME}/images/cheatsheets/YakuakeCheatsheet.jpg &"
+alias di="/usr/bin/display"
+alias dl="wget"
+alias docx2txt=docx2txt.pl
+alias du="du -h"
+alias evcf="e ${DROPBOX_HOME}/data/pim/contacts.vcf"
+alias e="vim.sh"
+alias ecss="${DROPBOX_HOME}/apps/java/juststyle.jar"
+alias et="e /tmp/temp"
+alias fa="find . -printf '%CY-%Cm-%Cd_%CH:%CM %p %l\n'"
+alias fe=ffmpeg-extract
+alias ff="firefox-trunk&"
+alias fln="find $PWD -type l -exec ls -o {} \;"
+alias flnd="find ~ -type l -exec ls -o {} \; | grep dropbox >| ${DROPBOX_HOME}/symlinks.dropbox.${USER}@${HOSTNAME}.txt"
+alias fm=ffmpeg-merge
+alias fp="firefox-trunk --private&"
+alias gemup="gem update && gem cleanup"
+alias gh="history | grep -i"
+alias girb="rvm use 2.0.0 && google-api oauth-2-login --client-id='427178904171.apps.googleusercontent.com' --client-secret='mUlrrm1VBFs3mE2oWgVyAbF2' --scope='https://www.googleapis.com/auth/plus.me' && google-api irb"
+alias grep="/bin/grep -E --color=auto"
+alias hi=history
+alias k9="kill -9"
+alias kc="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
+alias ld="ls | grep \/"
+alias less="less -r"
+alias ll="/bin/ls --color=auto -Ahlp --time-style=long-iso"
+alias lld="/bin/ls --color=auto -Ahlp --time-style=long-iso | grep ^d"
+alias lll="/bin/ls --color=auto -Ahlp --time-style=long-iso | grep ^l"
+alias lls="/bin/ls --color=auto -Ahlp --time-style=long-iso --sort=size"
+alias llt="/bin/ls --color=auto -Ahlp --time-style=long-iso | head"
+alias ls="/bin/ls --color=auto -Ap"
+alias lsi="/bin/ls --color=auto -1Aip"
+alias lt="/bin/ls --color=auto -Ahlpt --time-style=long-iso | head -20"
+alias lynx="/usr/bin/lynx -accept_all_cookies"
+alias more="less -r"
+alias mv="mv -i"
+alias myip="w3m -dump http://echoip.com/"
+alias nc="nesh -c"
+alias npmin="sudo npm -g install"
+alias ns="netstat -tulpn"
+alias pkup="pkcon refresh && pkcon update"
+alias plasma_restart="kbuildsycoca4 && kquitapp plasma-desktop && kstart plasma-desktop"
+alias pp="tr -cd '\12\40-\176' | a2ps --columns=1 --font='12' --portrait"
+alias pslpr="perl -i.bak -pe 's/[^[:ascii:]]//g' | textfmt -s A4 -p 12 | lpr -P HP_LaserJet_1100"
+alias pwget="pass"
+alias pwset="pass generate -n"
+alias rm="rm -i"
+alias rms="/usr/bin/shred -uvz"
+alias sa="sudo apt-get"
+#alias sftpsony="sftp -v -p 2222 sftp://root@192.168.0.7"
 #alias sshec2="ssh -l ubuntu -i ${EC2_HOME}/dlcjordankey.pem -p 22 ec2-54-216-219-132.eu-west-1.compute.amazonaws.com"
 alias sshme="ssh frdarryl@ifordparish.org.uk"
 #alias sshsony="ssh -v -p 2222 sftp://root@192.168.0.2"
@@ -347,9 +364,6 @@ alias unidecode="perl -C -MText::Unidecode -n -i -e'print unidecode( \$_)'"
 alias useradd="adduser"
 #alias vascii="${WEB_BROWSER} http://ascii.cl/htmlcodes.htm"
 #alias vcard_find_missing_end="pcregrep -nM '^[^E].*$\nBEGIN:VCARD'"
-vlcr() {
-    vlc $1 --start-time $2 --stop-time $3 --repeat
-}
 alias vd="youtube-dl -o \"%(title)s-%(id)s.%(ext)s\""
 #alias vfb="${WEB_BROWSER} http://www.facebook.com/revdjordan"
 #alias vgcal="${WEB_BROWSER} https://www.google.com/calendar/render?tab=mc&mode=day"
@@ -361,20 +375,13 @@ alias vd="youtube-dl -o \"%(title)s-%(id)s.%(ext)s\""
 #alias vhmd="${WEB_BROWSER} https://docs.google.com/spreadsheet/ccc?key=0AjHMvrmueFDwdEhVSG56Q2ZlRTJFUFdiell0ekhKQ1E"
 alias vi="vim"
 #alias vvmailhelp="w3m -dump http://danielchoi.com/software/vmail.html | less"
-#vp() { tabbed=$(tabbed -d); vimprobable2 -e $tabbed "$@" & }
 #alias vrcl="${WEB_BROWSER} http://almanac.oremus.org/lectionary/2012.html"
 #alias vvm="${WEB_BROWSER} https://ebill2.virginmedia.com/ebill2/bill-overview.jsf"
 #alias web2py_start="cd ~/web2py/;python web2py.py -a 'incordeiesu' -c server.crt -k server.key -i 0.0.0.0 -p 443"
 alias wgo="wget -O"
 alias wstc="~/bin/wstc.pl"
-wv() {
-	lsb_release -a
-	uname -a
-	dpkg-query -W -f '${status} ${package} ${version}\n' | sed -n 's/^install ok installed //p' | grep -i $1
-}
 alias xhi="xrandr -s 1440x900"
 alias xl="xine --loop"
 alias xlo="xrandr -s 1024x768"
 alias yt="youtube-dl"
-yto () { echo "${@}" >> _urls && youtube-dl -o $@; }
-yov () { youtube-dl -o $1_$2.mp4 https://www.youtube.com/watch?v=$2; }
+

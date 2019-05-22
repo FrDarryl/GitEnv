@@ -70,6 +70,10 @@ colorscheme asmdev
 " Highlight EOL whitespace, http://vim.wikia.com/wiki/Highlight_unwanted_spaces
 highlight ExtraWhitespace ctermbg=darkred guibg=#382424
 
+set hlsearch
+hi Search ctermbg=LightYellow
+hi Search ctermfg=Red
+
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red " the above flashes annoyingly while typing, be calmer in insert mode
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
