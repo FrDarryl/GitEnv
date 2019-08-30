@@ -29,3 +29,9 @@ do
     echo "..Creating ${PWD}/${dotfileBasename} (symbolic link to ${gitenvDotfile})"
     ln -s ${gitenvDotfile} ./${dotfileBasename}
 done
+
+git config --global user.email "revdjordan@gmail.com"
+git config --global user.name "FrDarryl"
+
+. /home/${USER}/.bashrc
+gitenv_update

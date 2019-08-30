@@ -22,3 +22,7 @@ if [[ $- == *i* ]]; then
 fi
 
 [ -f /opt/perl5/etc/bashrc ] && export PERLBREW_ROOT=/opt/perl5 && source /opt/perl5/etc/bashrc
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/frdarryl/.sdkman"
+[[ -s "/home/frdarryl/.sdkman/bin/sdkman-init.sh" ]] && source "/home/frdarryl/.sdkman/bin/sdkman-init.sh"

@@ -2,6 +2,7 @@
 " Remove ALL autocommands to allow redefines at initial load and runtime source
 autocmd!
 
+set nocp
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()

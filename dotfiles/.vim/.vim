@@ -1,0 +1,1 @@
+/home/frdarryl/gitenv/dotfiles/.vim

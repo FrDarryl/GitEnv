@@ -204,6 +204,11 @@ gitenv_add_vim_package() {
         git push origin master
     fi
 }
+gitenv_update() {
+    echo "Updating all git modules in ~/gitenv"
+    cd ~/gitenv
+    git submodule update --remote --merge
+}
 gp() { ps -efa | grep -i "$@" | grep -v grep | perl -pe's/\s{2,}/ /g' | cut -d ' ' -f 2 ; }
 kn() {
     for pid in `np`;
