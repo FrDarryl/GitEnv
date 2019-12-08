@@ -131,6 +131,25 @@ eventsFromUnical() {
         | perl -pe 's/\(commemoration of (.+?)\)/$1/g' \
         | perl -pe 's/\|or /|/g'
 }
+eventsFromUniversalis () {
+    if [ $# -ne 3 ];
+    then
+        echo "Usage: $0 Calendar(e.g., ordinariate|portsmouth) Year(YYYY-MM-DD) EventsInWorkSheetFirstFieldValue(pc1|pc2|sc1|sc2)";
+    else
+        curl http://www.universalis.com/europe.england.${1}/${2}0101/vcalendar.ics | tac | tac | /bin/grep -E "^(UID|SUMMARY)" | perl -pe 's/^UID:.+\...+\/(\d+).*\r\n/$1\t/' | perl -pe 's/^(\d{4})(\d{2})(\d{2})/$1-$2-$3/' | perl -pe 's/,\\n/,/g' | perl -pe 's/SUMMARY://' | /bin/sed -E "s/^/${3}\t/";
+    fi
+}
+eventsFromUniversalisYear ()
+{
+    if [ $# -ne 1 ]; then
+        echo "Usage: $0 Year(YYYY-MM-DD)";
+    else
+        eventsFromUniversalis portsmouth "${1}" "pc1";
+        eventsFromUniversalis portsmouth "${1}" "pc2";
+        eventsFromUniversalis ordinariate "${1}" "sc1";
+        eventsFromUniversalis ordinariate "${1}" "sc2";
+    fi
+}
 ffmpeg-extract () {
     if [ $# -ne 4 ];
     then
@@ -301,6 +320,33 @@ wv() {
 	uname -a
 	dpkg-query -W -f '${status} ${package} ${version}\n' | sed -n 's/^install ok installed //p' | grep -i $1
 }
+yt () {
+    for url in "$@"
+    do
+        filename=`youtube-dl --get-filename "${url}"`
+        utcdate=`date +%Y%m%dT%H%M`
+        tag="${utcdate}|url:${url}|filename:${filename}"
+        if [ -e ${filename} ];
+        then
+            echo "${tag} already downloaded."
+            continue
+        fi
+        attempts=1
+        while [[ ! -e ${filename} ]] && [[ ${attempts} -lt 10 ]]
+        do
+            echo "Downloading ${filename} (attempt ${attempts})"
+            youtube-dl "${url}"
+            attempts=$((${attempts} + 1))
+        done
+        if [ -e ${filename} ];
+        then
+            echo "${tag}" >> __yt
+            echo "${tag} downloaded; required ${attempts} attempts."
+        else
+            echo "${tag} could not be downloaded after ${attempts} attempts."
+        fi
+    done
+}
 yto () { echo "${@}" >> _urls && youtube-dl -o $@; }
 yov () { youtube-dl -o $1_$2.mp4 https://www.youtube.com/watch?v=$2; }
 
@@ -388,5 +434,4 @@ alias wstc="~/bin/wstc.pl"
 alias xhi="xrandr -s 1440x900"
 alias xl="xine --loop"
 alias xlo="xrandr -s 1024x768"
-alias yt="youtube-dl"
-
+#alias yt="youtube-dl"
