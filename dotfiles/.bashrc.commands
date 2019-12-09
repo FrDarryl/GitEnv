@@ -323,7 +323,7 @@ wv() {
 yt () {
     for url in "$@"
     do
-        filename=`youtube-dl --get-filename "${url}"`
+        filename=`youtube-dl --get-filename "${url}" 2>/dev/null`
         utcdate=`date +%Y%m%dT%H%M`
         tag="${utcdate}|url:${url}|filename:${filename}"
         if [ -e ${filename} ];
@@ -335,7 +335,7 @@ yt () {
         while [[ ! -e ${filename} ]] && [[ ${attempts} -lt 10 ]]
         do
             echo "Downloading ${filename} (attempt ${attempts})"
-            youtube-dl "${url}"
+            youtube-dl "${url}" 2>/dev/null
             attempts=$((${attempts} + 1))
         done
         if [ -e ${filename} ];
