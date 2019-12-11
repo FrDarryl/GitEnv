@@ -331,17 +331,17 @@ yt () {
             echo "${tag} already downloaded."
             continue
         fi
-        attempts=1
+        attempts=0
         while [[ ! -e ${filename} ]] && [[ ${attempts} -lt 10 ]]
         do
+            attempts=$((${attempts} + 1))
             echo "Downloading ${filename} (attempt ${attempts})"
             youtube-dl "${url}" 2>/dev/null
-            attempts=$((${attempts} + 1))
         done
         if [ -e ${filename} ];
         then
             echo "${tag}" >> __yt
-            echo "${tag} downloaded; required ${attempts} attempts."
+            echo "${tag} downloaded; required ${attempts} attempt/s."
         else
             echo "${tag} could not be downloaded after ${attempts} attempts."
         fi
