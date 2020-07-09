@@ -71,13 +71,13 @@ debls()
 {
     for file in /var/lib/apt/lists/*Packages; do echo "${file}" && grep -H ^Package "${file}" ; done | grep "${1}"
 }
-detox() {
-    for file_name in "${@}";
-    do
-        new_file_name="$(echo "${file_name}" | sed 's/ /_/g' | sed 's/[^0-9a-zA-Z-_.]//g')";
-        [ "${new_file_name}" != "${file_name}" ] && mv "${file_name}" "${new_file_name}"
-    done
-}
+#detox() {
+#    for file_name in "${@}";
+#    do
+#        new_file_name="$(echo "${file_name}" | sed 's/ /_/g' | sed 's/[^0-9a-zA-Z-_.]//g')";
+#        [ "${new_file_name}" != "${file_name}" ] && mv "${file_name}" "${new_file_name}"
+#    done
+#}
 eventsFromUnical() {
     curl http://www.universalis.com/europe.england.${1}/${2}0101/vcalendar.ics | tac | tac \
         | grep "^(UID|SUMMARY)" \
@@ -149,6 +149,9 @@ eventsFromUniversalisYear ()
         eventsFromUniversalis ordinariate "${1}" "sc1";
         eventsFromUniversalis ordinariate "${1}" "sc2";
     fi
+}
+fd () {
+    find . -type d -exec ls -d {} \;|sort -f
 }
 ffmpeg-extract () {
     if [ $# -ne 4 ];
@@ -242,6 +245,7 @@ ks() {
 }
 lu() { sdcv $1 | less ; }
 md() { pandoc -s -f markdown -t man $1 | man -l - ; }
+mkcd() { mkdir $1 && cd $1 ; }
 mp() { mplayer -loop 0 "$@" > /dev/null 2>&1 ; }
 mvi() { find . -inum $1 -exec mv -i {} $2 \; ; }
 npmup() {
@@ -311,6 +315,14 @@ setPrompt() {
 	fi
 }
 sos() { /usr/bin/nm -D $@ | cut -d' ' -f3 ; }
+tsvCols() {
+    let colNum=0;
+    for col in `head -1 ${1}.tsv`;
+    do
+        let colNum++;
+        echo $colNum `echo $col | cut -d';' -f 1`;
+    done
+}
 vlcr() {
     vlc $1 --start-time $2 --stop-time $3 --repeat
 }
@@ -332,7 +344,7 @@ yt () {
             continue
         fi
         attempts=0
-        while [[ ! -e ${filename} ]] && [[ ${attempts} -lt 10 ]]
+        while [[ ! -e ${filename} ]] #&& [[ ${attempts} -lt 10 ]]
         do
             attempts=$((${attempts} + 1))
             echo "Downloading ${filename} (attempt ${attempts})"
