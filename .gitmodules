@@ -67,3 +67,6 @@
 [submodule "dotfiles/.vim/bundle/vim-perl"]
 	path = dotfiles/.vim/bundle/vim-perl
 	url = https://github.com/vim-perl/vim-perl.git
+[submodule "dotfiles/.vim/bundle/vim-node-inspect"]
+	path = dotfiles/.vim/bundle/vim-node-inspect
+	url = https://github.com/eliba2/vim-node-inspect.git

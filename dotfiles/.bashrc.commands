@@ -139,10 +139,42 @@ eventsFromUniversalis () {
         curl http://www.universalis.com/europe.england.${1}/${2}0101/vcalendar.ics | tac | tac | /bin/grep -E "^(UID|SUMMARY)" | perl -pe 's/^UID:.+\...+\/(\d+).*\r\n/$1\t/' | perl -pe 's/^(\d{4})(\d{2})(\d{2})/$1-$2-$3/' | perl -pe 's/,\\n/,/g' | perl -pe 's/SUMMARY://' | /bin/sed -E "s/^/${3}\t/";
     fi
 }
+getOrdoIcs () {
+    usage="Usage: $0 AU|EF|OF [YYYY]"
+    if [ $# -lt 1 ] || [ $# -gt 2 ];
+    then
+        echo ${usage}
+        return 1
+    elif [ $# -eq 1 ]
+    then
+        year=`date +'%Y'`
+    else
+        year=${2}
+    fi
+    form=$1
+    if [ ${form} == 'AU' ];
+    then
+        url="http://www.universalis.com/europe.england.ordinariate/${year}0101/vcalendar.ics"
+    elif [ ${form} == 'EF' ];
+    then
+        url="curl https://www.missalemeum.com/en/api/v3/icalendar"
+    elif [ ${form} == 'OF' ];
+    then
+        url="http://www.universalis.com/europe.england.portsmouth/${year}0101/vcalendar.ics"
+    else
+        echo ${usage}
+        return 1
+    fi
+    nodejs ics2tsv.js ${url} ${form}
+#    curl ${url} # > ${year}_${form}.ics
+}
+getOrdoTsv () {
+    getOrdoIcs ${@:1} | tac | tac | /bin/grep -E "^(DTSTART|SUMMARY)" | perl -pe 's/^DTSTART.+:(.+)\r\n/\t$1\t\tOrdo\t#RITE#\t\t\t/' | perl -pe 's/(\d{4})(\d{2})(\d{2})/$3\/$2\/$1 00:00/' | perl -pe 's/,\\n/,/g' | perl -pe 's/SUMMARY://' | /bin/sed -E "s/#RITE#/${1}/"
+}
 eventsFromUniversalisYear ()
 {
     if [ $# -ne 1 ]; then
-        echo "Usage: $0 Year(YYYY-MM-DD)";
+        echo "Usage: $0 YYYY";
     else
         eventsFromUniversalis portsmouth "${1}" "pc1";
         eventsFromUniversalis portsmouth "${1}" "pc2";

@@ -20,14 +20,6 @@ export WORD_PROCESSOR_APP="lowriter"
 
 [ -r ${HOME}/.dircolors ] && export DIR_COLORS=${HOME}/.dircolors || export DIR_COLORS=
 
-export PIM_DATA="${HOME}/pim/"
-
-# Google API Parish Information Management System
-
-#export GOOGLE_CLIENT_ID="427178904171.apps.googleusercontent.com"
-#export GOOGLE_CLIENT_SECRET="mUlrrm1VBFs3mE2oWgVyAbF2"
-#export GOOGLE_CLIENT_CALLBACK_URL="http://localhost:8082/auth/callback"
-#export GOOGLE_WEB_PORT="8082"
 
 export EC2_HOME=~/.ec2
 

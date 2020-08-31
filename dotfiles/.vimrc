@@ -63,17 +63,28 @@ let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_b = '0x%B'
 "========================================================== colour scheme
+function! MyHighlights() abort
+"    highlight ExtraWhitespace ctermbg=darkred guibg=#382424
+    highlight NonText    cterm=NONE ctermbg=17                gui=NONE guibg=#00005f
+    highlight Normal     cterm=NONE ctermbg=17                gui=NONE guibg=#00005f
+    highlight StatusLine cterm=NONE ctermbg=231   ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
+    highlight Visual     cterm=NONE ctermbg=76    ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
+    highlight Search                ctermbg=Brown ctermfg=Yellow
+endfunction
+
+augroup MyColors
+    autocmd!
+    autocmd ColorScheme * call MyHighlights()
+augroup END
+
 "colorscheme ChocolateLiquor
 "colorscheme almost-default
 colorscheme asmdev
+"colorscheme torte
 "colorscheme rastafari
 
 " Highlight EOL whitespace, http://vim.wikia.com/wiki/Highlight_unwanted_spaces
-highlight ExtraWhitespace ctermbg=darkred guibg=#382424
 
-set hlsearch
-hi Search ctermbg=LightYellow
-hi Search ctermfg=Red
 
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red " the above flashes annoyingly while typing, be calmer in insert mode
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
@@ -131,7 +142,6 @@ set iskeyword+=35-38,45-47 " urls = variables + #$%&,-./
 
 "========================================================= key/command mapping
 let mapleader = ","
-
 cmap dlw %s/^\s\+//gc
 cmap dna %s/[\x7f-\xff]//gc
 "%s/‘/'/g
@@ -144,6 +154,8 @@ cmap hna match Error /[\x7f-\xff]/
 cmap pdb ConqueGdb python
 cmap udc %! perl -C -MText::Unidecode -n -i -e'print unidecode( $_)'
 cmap w!! w !sudo tee % >/dev/null
+
+nnoremap <C-e> <C-w>
 
 nmap <C-T> <ESC>:tabnew 
 
@@ -168,12 +180,6 @@ function! s:FixWhitespace(line1,line2)
     call setpos('.', l:save_cursor)
 endfunction
 
-function! s:FixCalendar(...)
-    %g/^URL:/normal dd
-    %s/\(http:\/\/www.universalis.com\)*\/Europe\.England\.//
-    %s/\/\(today\.htm\)*$//
-endfunction
-
 function! WordProcessorMode()
     setlocal formatoptions=t1
     setlocal textwidth=72
@@ -184,15 +190,6 @@ function! WordProcessorMode()
     setlocal noexpandtab
 endfunction
 cmap WP call WordProcessorMode()
-
-function! CreateBufferQuotidianLectionary()
-    let l:lectionaryDate = input('Enter date (YYYYMMDD):[today]')
-    if l:lectionaryDate == ""
-        let l:lectionaryDate = strftime("%Y%m%d")
-    endif
-    execute 'read !get_universalis_texts.sh ' . l:lectionaryDate
-endfunction
-cmap QL call CreateBufferQuotidianLectionary()
 
 " Plugin options
 
@@ -208,8 +205,6 @@ set shell=bash\ --login
 
 source ~/.vim/osc52.vim
 vmap <C-c> y:call SendViaOSC52(getreg('"'))<cr>
-
-let @t = '/^All Saintsotest	hello	again^'
 
 " Must be at the end
 syntax on
