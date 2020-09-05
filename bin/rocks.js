@@ -350,9 +350,9 @@ function UpdateEventsSheet_pushRowsForCalendarEvent(calendarEvent) {
         }
         if (calendarEvent.hasOwnProperty('summary')) {
             if (calendarEvent.summary.hasOwnProperty('val')) {
-                newEventsSheetRowSummary = calendarEvent.summary.val;
+                newEventsSheetRow.summary = calendarEvent.summary.val;
             } else {
-                newEventsSheetRowSummary = calendarEvent.summary;
+                newEventsSheetRow.summary = calendarEvent.summary;
             }
         }
         newEventsSheetRow.summary = newEventsSheetRow.summary
