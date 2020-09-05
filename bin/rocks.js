@@ -355,7 +355,6 @@ function UpdateEventsSheet_pushRowsForCalendarEvent(calendarEvent) {
                 newEventsSheetRowSummary = calendarEvent.summary;
             }
         }
-        console.log(`${functionName}: summary so far ${newEventsSheetRow.summary}`);
         newEventsSheetRow.summary = newEventsSheetRow.summary
             .replace(/,\n \(commemoration of (.+)\)/,"\n$1")
             .replace(/,\n or /g,"\n")
