@@ -91,11 +91,6 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 
-" Automagically set textwidth of text files to 72 for printing.
-"autocmd BufEnter *.txt setlocal textwidth=72 formatoptions=aw2tq
-
-" Nice cursor column (highlight always) and line (highlight only in insert mode)
-
 autocmd BufWinEnter * set nocul
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
@@ -141,7 +136,6 @@ set iskeyword+=36,48-58,63,65-90 " variables = $,0-9,A-Z,a-z,_
 set iskeyword+=35-38,45-47 " urls = variables + #$%&,-./
 
 "========================================================= key/command mapping
-let mapleader = ","
 cmap dlw %s/^\s\+//gc
 cmap dna %s/[\x7f-\xff]//gc
 "%s/‘/'/g
@@ -159,15 +153,20 @@ nnoremap <C-e> <C-w>
 
 nmap <C-T> <ESC>:tabnew 
 
+set showcmd
+
+nmap <silent> <J>  :join<CR>0
+
 nmap <silent> <A-Right> :bnext!<CR>      " Buffer navigation (within current window)
 nmap <silent> <A-Left>  :bprevious!<CR>   " Buffer navigation (within current window)
 nmap <silent> <A-Down>  :wincmd j<CR>
 nmap <silent> <A-Up>    :wincmd k<CR>
-"nmap <silent> <A-Left>  :tabprevious!<CR> " Also: gT
-"nmap <silent> <A-Right> :tabnext!<CR>     " Also: gt
-nmap <silent> <F2>  :join<CR>0
-nmap <silent> <F11> :cal VimCommanderToggle()<CR>
 
+nmap <silent> <A-S> :NodeInspectStart<cr>
+nmap <silent> <A-R> :NodeInspectRun<cr>
+nmap <silent> <A-I> :NodeInspectStepInto<cr>
+nmap <silent> <A-O> :NodeInspectStepOver<cr>
+nmap <silent> <A-B> :NodeInspectToggleBreakpoint<cr>
 
 ":for i in range(1,125) | put ='=TRANSPOSE(PostTownsReference!'.i.':'.i.')' | endfor
 ":%perldo s/([\w-]+?)_([\w-]*?)_([\w-]+?)_(churches|workplaces|religiousCommunities|cemeteries)/\U$1\E_$2_$3_$4/g)
