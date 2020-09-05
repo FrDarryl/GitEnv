@@ -22,7 +22,6 @@ const moment   = require('moment');
 const nodeIcal = require('node-ical');
 const readline = require('readline');
 
-SPREADSHEET_ID   = '15wcyRNGf11VqtfcosPaoFEcgrMjEHnPT5UN1oJ2CD_I';
 SCOPES           = ['https://www.googleapis.com/auth/spreadsheets']; // If modifying delete file at TOKEN_PATH
 CREDENTIALS_PATH = './auth/credentials.json';
 TOKEN_PATH       = './auth/token.json';
@@ -35,7 +34,7 @@ function main(argv) {
 
     fs.readFile(CREDENTIALS_PATH, (err, content) => {
         if (err) return console.log(`${functionName}: Error loading credentials file: ${err}`);
-        let callbackFunctionName = argv.shift();
+        let callbackFunctionName = argv[0];
         console.log(`${functionName}: Authorising and running callback ${callbackFunctionName}`);
 
         switch (callbackFunctionName) {
@@ -154,10 +153,10 @@ const PersonsSheet = {
 function getSheetRows(auth, sheetData, callback, params) {
     let functionName = 'FromPersonsSheetRows';
     console.log(`Entering ${functionName}`);
-
     let sheetsService = google.sheets({version: 'v4', auth});
+    let spreadsheetId = params[1]; // param[0] is the command to run
     sheetsService.spreadsheets.values.get({
-        spreadsheetId: SPREADSHEET_ID,
+        spreadsheetId: spreadsheetId,
         range: `${sheetData.name}!${sheetData.getRange}`,
     }, (err, res) => {
         if (err) {
@@ -182,8 +181,9 @@ function putSheetRows(auth, sheetData, callback, params) {
         values,
     };
     let sheetsService = google.sheets({version: 'v4', auth});
+    let spreadsheetId = params[1]; // param[0] is the command to run
     sheetsService.spreadsheets.values.append({
-        spreadsheetId:    SPREADSHEET_ID,
+        spreadsheetId:    spreadsheetId,
         range:            `${sheetData.name}!${sheetData.putRange}`,
         valueInputOption: 'RAW',
         resource:         resource
@@ -278,7 +278,7 @@ function UpdateEventsSheet_GetCalendarResource(auth, params) {
     let functionName = 'UpdateEventsSheet_GetCalendarResource';
     console.log(`Entering ${functionName}`);
 
-    CalendarResource.calendarsSheetId = params.shift();
+    CalendarResource.calendarsSheetId = params[2]; // [0] = spreadsheetId [1] = command ('UpdateEventsSheet')
     CalendarResource.calendarsSheetRowIndex = CalendarsSheet.idColumn.indexOf(CalendarResource.calendarsSheetId);
     if (CalendarResource.calendarsSheetRowIndex === -1) {
         console.log(`${functionName}: no location for ID ${CalendarResource.calendarsSheetId} in ${CalendarsSheet.name}; ids: ${CalendarsSheet.idColumn}`);
