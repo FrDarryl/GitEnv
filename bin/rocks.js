@@ -345,10 +345,17 @@ function UpdateEventsSheet_pushRowsForCalendarEvent(calendarEvent) {
             cat1:       templateSheetRow[10],
             cat2:       templateSheetRow[11],
             cat3:       templateSheetRow[12],
-            summary:    calendarEvent.summary,
+            summary:    '',
             pushArray:  []
         }
-
+        if (calendarEvent.hasOwnProperty('summary')) {
+            if (calendarEvent.summary.hasOwnProperty('val')) {
+                newEventsSheetRowSummary = calendarEvent.summary.val;
+            } else {
+                newEventsSheetRowSummary = calendarEvent.summary;
+            }
+        }
+        console.log(`${functionName}: summary so far ${newEventsSheetRow.summary}`);
         newEventsSheetRow.summary = newEventsSheetRow.summary
             .replace(/,\n \(commemoration of (.+)\)/,"\n$1")
             .replace(/,\n or /g,"\n")
