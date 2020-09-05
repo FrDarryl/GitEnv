@@ -154,7 +154,7 @@ function getSheetRows(auth, sheetData, callback, params) {
     let functionName = 'FromPersonsSheetRows';
     console.log(`Entering ${functionName}`);
     let sheetsService = google.sheets({version: 'v4', auth});
-    let spreadsheetId = params[1]; // param[0] is the command to run
+    let spreadsheetId = params[1]; // [0] is the command to run
     sheetsService.spreadsheets.values.get({
         spreadsheetId: spreadsheetId,
         range: `${sheetData.name}!${sheetData.getRange}`,
@@ -181,7 +181,7 @@ function putSheetRows(auth, sheetData, callback, params) {
         values,
     };
     let sheetsService = google.sheets({version: 'v4', auth});
-    let spreadsheetId = params[1]; // param[0] is the command to run
+    let spreadsheetId = params[1]; // [0] is the command to run
     sheetsService.spreadsheets.values.append({
         spreadsheetId:    spreadsheetId,
         range:            `${sheetData.name}!${sheetData.putRange}`,
@@ -278,7 +278,7 @@ function UpdateEventsSheet_GetCalendarResource(auth, params) {
     let functionName = 'UpdateEventsSheet_GetCalendarResource';
     console.log(`Entering ${functionName}`);
 
-    CalendarResource.calendarsSheetId = params[2]; // [0] = spreadsheetId [1] = command ('UpdateEventsSheet')
+    CalendarResource.calendarsSheetId = params[2]; // [0] is the command ('UpdateEventsSheet'); [1] is the spreadsheetId
     CalendarResource.calendarsSheetRowIndex = CalendarsSheet.idColumn.indexOf(CalendarResource.calendarsSheetId);
     if (CalendarResource.calendarsSheetRowIndex === -1) {
         console.log(`${functionName}: no location for ID ${CalendarResource.calendarsSheetId} in ${CalendarsSheet.name}; ids: ${CalendarsSheet.idColumn}`);
