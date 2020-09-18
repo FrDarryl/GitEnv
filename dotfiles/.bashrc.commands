@@ -58,6 +58,15 @@ aptup()
     sudo apt-get clean;
 }
 au() { echo "${@}" >> _urls ; }
+cdi()
+{
+    if [ $# -ne 1 ];
+    then
+        echo "Usage: ${FUNCNAME[0]} inode";
+    else
+        cd $(find -inum ${@:1}) ;
+    fi
+}
 debin()
 {
     echo -e "\n\n\e[00;31mRunning apt-get -f install\e[00m\n\n" &&
