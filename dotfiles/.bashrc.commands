@@ -7,6 +7,11 @@
 
 
 # functions
+aptcs()
+{
+    echo -e "\n\n\e[00;31mRunning apt-cache search\e[00m\n\n" &&
+    sudo apt-cache search "$@";
+}
 aptin()
 {
     echo -e "\n\n\e[00;31mRunning apt-get -f install\e[00m\n\n" &&
@@ -25,7 +30,7 @@ aptin()
 aptdp()
 {
     echo -e "\n\n\e[00;31mRunning apt-rdepends\e[00m\n\n" &&
-    sudo apt-rdepends "$@"
+    sudo apt-rdepends "$@";
 }
 aptls()
 {
@@ -87,6 +92,10 @@ debls()
 #        [ "${new_file_name}" != "${file_name}" ] && mv "${file_name}" "${new_file_name}"
 #    done
 #}
+dlurl() {
+    #lynx -dump ${1} | sed -e "s/^   //" | sed -n "/^January$/,$p" | sed -n "/^$/q;p"
+    lynx -dump ${1} | sed -e "s/^   //" | sed -n "${2},\$p" | sed -n "${3}q;p"
+}
 eventsFromUnical() {
     curl http://www.universalis.com/europe.england.${1}/${2}0101/vcalendar.ics | tac | tac \
         | grep "^(UID|SUMMARY)" \
@@ -147,6 +156,10 @@ eventsFromUniversalis () {
     else
         curl http://www.universalis.com/europe.england.${1}/${2}0101/vcalendar.ics | tac | tac | /bin/grep -E "^(UID|SUMMARY)" | perl -pe 's/^UID:.+\...+\/(\d+).*\r\n/$1\t/' | perl -pe 's/^(\d{4})(\d{2})(\d{2})/$1-$2-$3/' | perl -pe 's/,\\n/,/g' | perl -pe 's/SUMMARY://' | /bin/sed -E "s/^/${3}\t/";
     fi
+}
+fr90 ()
+{
+    ffmpeg -i $1 -vf "transpose=0" "r90.${1}"
 }
 getOrdoIcs () {
     usage="Usage: $0 AU|EF|OF [YYYY]"
