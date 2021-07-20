@@ -1,11 +1,10 @@
 #!/bin/bash
-
+#
 #Source machine-specific commands first
-[ -f "${HOME}/.bashrc.commands.${HOSTNAME}" ] && source ${HOME}/.bashrc.commands.${HOSTNAME}
-
-[ -e "${HOME}/Program_Files/Adobe/Reader 11.0/Reader/AcroRd32.exe" ] && alias acroread="${HOME}/Program_Files/Adobe/Reader\ 11.0/Reader/AcroRd32.exe"
-
-
+#[ -f "${HOME}/.bashrc.commands.${HOSTNAME}" ] && source ${HOME}/.bashrc.commands.${HOSTNAME}
+#
+#[ -e "${HOME}/Program_Files/Adobe/Reader 11.0/Reader/AcroRd32.exe" ] && alias acroread="${HOME}/Program_Files/Adobe/Reader\ 11.0/Reader/AcroRd32.exe"
+#
 # functions
 aptcs()
 {
@@ -62,7 +61,7 @@ aptup()
     echo -e "\n\n\e[00;31mRunning apt-get -y clean\e[00m\n\n" &&
     sudo apt-get clean;
 }
-au() { echo "${@}" >> _urls ; }
+au() { echo "${@}" >> urls ; }
 cdi()
 {
     if [ $# -ne 1 ];
@@ -156,6 +155,12 @@ eventsFromUniversalis () {
     else
         curl http://www.universalis.com/europe.england.${1}/${2}0101/vcalendar.ics | tac | tac | /bin/grep -E "^(UID|SUMMARY)" | perl -pe 's/^UID:.+\...+\/(\d+).*\r\n/$1\t/' | perl -pe 's/^(\d{4})(\d{2})(\d{2})/$1-$2-$3/' | perl -pe 's/,\\n/,/g' | perl -pe 's/SUMMARY://' | /bin/sed -E "s/^/${3}\t/";
     fi
+}
+findgrep() {
+    find "${0}" -type f -print0 | xargs -0 grep -i "${2}";
+}
+findll() {
+    find "${0}" -type f -print0 | xargs -0 ls -l;
 }
 fr90 ()
 {
@@ -389,31 +394,35 @@ wv() {
 yt () {
     for url in "$@"
     do
-        filename=`youtube-dl --get-filename "${url}" 2>/dev/null`
-        utcdate=`date +%Y%m%dT%H%M`
-        tag="${utcdate}|url:${url}|filename:${filename}"
-        if [ -e ${filename} ];
+        filename=`youtube-dl --get-filename "${url}" | sed 's/[^A-Za-z0-9_-.]/-/g' 2>/dev/null`
+        if [ -e "${filename}" ];
         then
-            echo "${tag} already downloaded."
+            echo "${filename} already downloaded."
             continue
         fi
         attempts=0
-        while [[ ! -e ${filename} ]] #&& [[ ${attempts} -lt 10 ]]
+        while [[ ! -e "${filename}" ]] #&& [[ ${attempts} -lt 10 ]]
         do
             attempts=$((${attempts} + 1))
             echo "Downloading ${filename} (attempt ${attempts})"
-            youtube-dl "${url}" 2>/dev/null
+            youtube-dl -o "${filename}" "${url}" 2>/dev/null
         done
-        if [ -e ${filename} ];
+        if [ -e "${filename}" ];
         then
+            utcdate=`date +%Y%m%dT%H%M`
+            tag="${utcdate}|url:${url}|filename:${filename}"
             echo "${tag}" >> __yt
-            echo "${tag} downloaded; required ${attempts} attempt/s."
+            echo "${filename} downloaded; required ${attempts} attempt/s."
         else
-            echo "${tag} could not be downloaded after ${attempts} attempts."
+            echo "${filename} could not be downloaded after ${attempts} attempts."
         fi
     done
 }
-yto () { echo "${@}" >> _urls && youtube-dl -o $@; }
+xclipimg() {
+    ft="$(file --brief --mime-type "${1}")"
+    cat $1 | xclip -selection clipboard -t $ft -i
+}
+yto () { echo "${@}" >> urls && youtube-dl -o $@; }
 yov () { youtube-dl -o $1_$2.mp4 https://www.youtube.com/watch?v=$2; }
 
 # aliases
